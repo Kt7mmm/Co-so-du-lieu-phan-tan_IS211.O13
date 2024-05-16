@@ -24,11 +24,11 @@ A library needs to manage thousands of books, information about authors, book ca
 - **Book and Author Information Management**
 > The system needs to store information about books, including titles, authors, genres, descriptions, and detailed information about authors (name, country, year of birth, etc.). 
 > 
--**Book Categories and Borrowing/Returning Management****
+- **Book Categories and Borrowing/Returning Management**
 > The system must track information about book categories, the number of available books, and details about borrowing and returning books, including the borrowed books, borrowing date, due date, etc. 
 
--**Quick Search and Data Querying****
+- **Quick Search and Data Querying**
 > Fast search and data querying capabilities are crucial for users to easily find books by title, author, or genre.
 > 
--**Data Consistency and Synchronization**
+- **Data Consistency and Synchronization**
 > Data about books and borrowing/returning information needs to be synchronized and consistently updated across all nodes in the distributed system.
