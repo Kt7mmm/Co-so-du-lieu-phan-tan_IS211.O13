@@ -1,0 +1,573 @@
+<export><workspace name="Workspace"><query name="test_read_data" focus="false" listorder="1" taborder="1" active="true" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">/*
+const queryResult = cts.search(
+  cts.collectionQuery('collectionbook')
+);
+
+queryResult.toArray();
+*/
+/*
+const queryResult = cts.search(
+  cts.andQuery([
+    cts.collectionQuery('collectionbook'),
+    cts.jsonPropertyScopeQuery('book_id', cts.wordQuery('1'))
+  ])
+);
+
+queryResult.toArray();
+
+*/
+</query><query name="create_book_collection" focus="false" listorder="2" taborder="5" active="false" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">declareUpdate();
+
+const books = [
+  {
+  "book_id": "1",
+  "title": "Tôi thấy hoa vàng trên cỏ xanh ",
+  "authors": [
+    {
+      "name": "Nguyễn Nhật Ánh",
+      "country": "Việt Nam",
+      "birth_year": "05/06/2002"
+    }
+  ],
+  "genre": "Cuộc sống",
+  "description": "Quên hương gia đình"
+},
+ {
+  "book_id": "2",
+"title": "Dế mèn phiêu lưu ký",
+"authors": [
+{
+"name": "Tô Hoài",
+"country": "Việt Nam",
+"birth_year": "03/08/1920"
+}
+],
+"genre": "Truyện thiếu nhi",
+"description": "Chuyến phiêu lưu của Dế mèn tại làng cỏ."
+},
+{
+  "book_id": "3",
+"title": "Số đỏ",
+"authors": [
+{
+"name": "Nguyễn Hồng",
+"country": "Việt Nam",
+"birth_year": "01/01/1912"
+}
+],
+"genre": "Chính trị - Xã hội",
+"description": "Tác phẩm nổi tiếng về xã hội Việt Nam thập kỷ 1940."
+},
+{
+  "book_id": "4",
+"title": "Nhà giả kim",
+"authors": [
+{
+"name": "Paulo Coelho",
+"country": "Brasil",
+"birth_year": "24/08/1947"
+},
+{
+"name": "Dương Phương Đức",
+"country": "Việt Nam",
+"birth_year": "01/01/1980"
+}
+],
+"genre": "Tâm lý - Tôn giáo",
+"description": "Cuộc hành trình tìm kiếm ý nghĩa cuộc sống."
+},
+{
+  "book_id": "5",
+"title": "Bến Thành, Sài Gòn - Những nét văn hóa truyền thống",
+"authors": [
+{
+"name": "Nguyễn Ngọc Thuần",
+"country": "Việt Nam",
+"birth_year": "15/05/1975"
+}
+],
+"genre": "Văn hóa - Lịch sử",
+"description": "Khám phá văn hóa và lịch sử của thành phố Hồ Chí Minh."
+},
+{
+  "book_id": "6",
+"title": "Chạy trốn trong bóng đêm",
+"authors": [
+{
+"name": "Nguyễn Nhật Ánh",
+"country": "Việt Nam",
+"birth_year": "05/06/2002"
+}
+],
+"genre": "Tiểu thuyết hài hước",
+"description": "Câu chuyện về nhóm bạn trẻ trên con đường tìm kiếm ý nghĩa cuộc sống."
+},
+{
+    "book_id": "7",
+"title": "Đảo mộng mơ",
+"authors": [
+{
+"name": "Nguyễn Nhật Ánh",
+"country": "Việt Nam"
+}
+],
+"genre": "Truyện tranh",
+"description": "Hành trình phiêu lưu của nhóm bạn trẻ qua các hòn đảo kỳ bí."
+},
+{
+    "book_id": "8",
+"title": "Gốc đa",
+"authors": [
+{
+"name": "Nguyễn Nhật Ánh",
+"country": "Việt Nam",
+"birth_year": "05/06/2002"
+}
+],
+"genre": "Tiểu thuyết ngắn",
+"description": "Những câu chuyện nhỏ về tình bạn và tình yêu trong cuộc sống hàng ngày."
+},
+{
+    "book_id": "9",
+"title": "Kinh vị thành phố Hồ Chí Minh",
+"authors": [
+{
+"name": "Vũ Thanh Tịnh",
+"country": "Việt Nam",
+"birth_year": "20/12/1985"
+}
+],
+"genre": "Ẩm thực",
+"description": "Khám phá vị ngon và hương vị đặc trưng của ẩm thực Sài Gòn."
+},
+{
+    "book_id": "10",
+"title": "Sống còn",
+"authors": [
+{
+"name": "Nguyễn Huy Thiệp",
+"country": "Việt Nam",
+"birth_year": "15/11/1950"
+}
+],
+"genre": "Tiểu thuyết hiện đại",
+"description": "Cuộc sống và những thách thức của người dân nông thôn Việt Nam."
+},
+{
+    "book_id": "11",
+"title": "Nỗi buồn chiến tranh",
+"authors": [
+{
+"name": "Bảo Ninh",
+"country": "Việt Nam",
+"birth_year": "18/10/1952"
+}
+],
+"genre": "Văn học chiến tranh",
+"description": "Ghi chép về những đau thương và nỗi buồn trong thời kỳ chiến tranh Việt Nam."
+}
+];
+
+for (const book of books) {
+  const bookDocumentUri = '/books/' + book.book_id + '.json';
+  
+  xdmp.documentInsert(
+    bookDocumentUri,
+    book
+  );
+  
+  xdmp.documentAddCollections(bookDocumentUri, "collectionbook");
+}
+
+xdmp.commit();
+
+</query><query name="create_catalog_collection" focus="false" listorder="3" taborder="3" active="false" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">declareUpdate();
+
+const catalogs = [
+  {
+    "book_id" : "1",
+  "title": " Tôi thấy hoa vàng trên cỏ xanh ",
+  "quantity_available": 100,
+  "total_quantity": 101,
+  "borrowed_records": [
+    {
+      "user_id": "20520839",
+      "borrow_date": "1/12/2023",
+      "return_date": "2/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "2",
+  "title": "Dế mèn phiêu lưu ký",
+  "quantity_available": 80,
+  "total_quantity": 82,
+  "borrowed_records": [
+    {
+      "user_id": "21522605",
+      "borrow_date": "5/12/2023",
+      "return_date": "10/12/2023"
+    },
+    {
+      "user_id": "20520839",
+      "borrow_date": "15/12/2023",
+      "return_date": "20/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "3",
+  "title": "Số đỏ",
+  "quantity_available": 120,
+  "total_quantity": 121,
+  "borrowed_records": [
+    {
+      "user_id": "21522101",
+      "borrow_date": "8/12/2023",
+      "return_date": "12/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "4",
+  "title": "Nhà giả kim",
+  "quantity_available": 90,
+  "total_quantity": 92,
+  "borrowed_records": [
+    {
+      "user_id": "20520839",
+      "borrow_date": "3/12/2023",
+      "return_date": "6/12/2023"
+    },
+    {
+      "user_id": "21522605",
+      "borrow_date": "12/12/2023",
+      "return_date": "15/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "5",
+  "title": "Bến Thành, Sài Gòn - Những nét văn hóa truyền thống",
+  "quantity_available": 100,
+  "total_quantity": 111,
+  "borrowed_records": [
+    {
+      "user_id": "21522101",
+      "borrow_date": "6/12/2023",
+      "return_date": "10/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "6",
+  "title": "Chạy trốn trong bóng đêm",
+  "quantity_available": 110,
+  "total_quantity": 112,
+  "borrowed_records": [
+    {
+      "user_id": "20520839",
+      "borrow_date": "10/12/2023",
+      "return_date": "15/12/2023"
+    },
+    {
+      "user_id": "21522605",
+      "borrow_date": "18/12/2023",
+      "return_date": "22/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "7",
+  "title": "Đảo mộng mơ",
+  "quantity_available": 95,
+  "total_quantity": 97,
+  "borrowed_records": [
+    {
+      "user_id": "21522101",
+      "borrow_date": "2/12/2023",
+      "return_date": "7/12/2023"
+    },
+    {
+      "user_id": "20520839",
+      "borrow_date": "14/12/2023",
+      "return_date": "18/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "8",
+  "title": "Gốc đa",
+  "quantity_available": 80,
+  "total_quantity": 81,
+  "borrowed_records": [
+    {
+      "user_id": "21522605",
+      "borrow_date": "7/12/2023",
+      "return_date": "12/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "9",
+  "title": "Kinh vị thành phố Hồ Chí Minh",
+  "quantity_available": 85,
+  "total_quantity": 86,
+  "borrowed_records": [
+    {
+      "user_id": "21522101",
+      "borrow_date": "4/12/2023",
+      "return_date": "9/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "10",
+  "title": "Sống còn",
+  "quantity_available": 110,
+  "total_quantity": 111,
+  "borrowed_records": [
+    {
+      "user_id": "20520839",
+      "borrow_date": "9/12/2023",
+      "return_date": "13/12/2023"
+    }
+  ]
+},
+  {
+    "book_id" : "11",
+  "title": "Nỗi buồn chiến tranh",
+  "quantity_available": 95,
+  "total_quantity": 97,
+  "borrowed_records": [
+    {
+      "user_id": "21522605",
+      "borrow_date": "11/12/2023",
+      "return_date": "16/12/2023"
+    },
+    {
+      "user_id": "21522101",
+      "borrow_date": "20/12/2023",
+      "return_date": "25/12/2023"
+    }
+  ]
+}
+];
+
+for (const catalog of catalogs) {
+  const catalogDocumentUri = '/catalogs/' + catalog.book_id + '.json';
+  
+  xdmp.documentInsert(
+    catalogDocumentUri,
+    catalog
+  );
+  
+  xdmp.documentAddCollections(catalogDocumentUri, "collectioncatalog");
+}
+
+xdmp.commit();
+</query><query name="create_user_collection" focus="false" listorder="4" taborder="4" active="false" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">declareUpdate();
+
+const users = [
+   {
+     "user_id" : "20520839",
+     "name" : "Võ Thanh Tú",
+     "yearbirth" : 2002,
+     "phone" : "0987654321"
+   },
+  {
+     "user_id" : "21522605",
+     "name" : "Trần Kim Thanh",
+     "yearbirth" : 2003,
+     "phone" : "0987233416"
+   },
+  {
+     "user_id" : "21522101",
+     "name" : "Trần Minh Hoàng",
+     "yearbirth" : 2003,
+     "phone" : "0987365255"
+   }
+];
+
+for (const user of users) {
+  const userDocumentUri = '/users/' + user.user_id + '.json';
+  
+  xdmp.documentInsert(
+    userDocumentUri,
+    user
+  );
+  
+  xdmp.documentAddCollections(userDocumentUri, "collectionuser");
+}
+
+xdmp.commit();
+
+</query><query name="create_borrowing_record_collection" focus="false" listorder="5" taborder="5" active="false" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">declareUpdate();
+
+const borrowing_records = [
+  {
+  "user_id": "20520839",
+  "borrowed_books": [
+    {
+      "book_id": "1",
+      "borrow_date": "1/12/2023",
+      "return_date": "2/12/2023"
+    },
+    {
+      "book_id": "2",
+      "borrow_date": "15/12/2023",
+      "return_date": "20/12/2023"
+    },
+    {
+      "book_id": "4",
+      "borrow_date": "3/12/2023",
+      "return_date": "6/12/2023"
+    },
+    {
+      "book_id": "6",
+      "borrow_date": "10/12/2023",
+      "return_date": "15/12/2023"
+    },
+    {
+      "book_id": "7",
+      "borrow_date": "14/12/2023",
+      "return_date": "18/12/2023"
+    },
+    {
+      "book_id": "10",
+      "borrow_date": "9/12/2023",
+      "return_date": "13/12/2023"
+    }
+  ]
+},
+  {
+  "user_id": "21522605",
+  "borrowed_books": [
+    {
+      "book_id": "2",
+      "borrow_date": "5/12/2023",
+      "return_date": "10/12/2023"
+    },
+    {
+      "book_id": "4",
+      "borrow_date": "12/12/2023",
+      "return_date": "15/12/2023"
+    },
+    {
+      "book_id": "6",
+      "borrow_date": "18/12/2023",
+      "return_date": "22/12/2023"
+    },
+    {
+      "book_id": "8",
+      "borrow_date": "7/12/2023",
+      "return_date": "12/12/2023"
+    },
+    {
+      "book_id": "11",
+      "borrow_date": "11/12/2023",
+      "return_date": "16/12/2023"
+    }
+  ]
+},
+  {
+  "user_id": "20522101",
+  "borrowed_books": [
+    {
+      "book_id": "3",
+      "borrow_date": "8/12/2023",
+      "return_date": "12/12/2023"
+    },
+    {
+      "book_id": "5",
+      "borrow_date": "6/12/2023",
+      "return_date": "10/12/2023"
+    },
+    {
+      "book_id": "7",
+      "borrow_date": "2/12/2023",
+      "return_date": "7/12/2023"
+    },
+    {
+      "book_id": "9",
+      "borrow_date": "4/12/2023",
+      "return_date": "9/12/2023"
+    },
+    {
+      "book_id": "11",
+      "borrow_date": "20/12/2023",
+      "return_date": "25/12/2023"
+    }
+  ]
+}
+];
+
+for (const borrowing_record of borrowing_records){
+  const borrowing_recordDocumentUri = '/borrowing_records/' + borrowing_record.user_id + '.json';
+  
+  xdmp.documentInsert(
+    borrowing_recordDocumentUri,
+    borrowing_record
+  );
+  
+  xdmp.documentAddCollections(borrowing_recordDocumentUri, 'collectionborrowing_record');
+};
+
+xdmp.commit();</query><query name="test_delete_data" focus="false" listorder="6" taborder="2" active="false" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="javascript" optimize="1">declareUpdate();
+xdmp.documentDelete("/books/1.json");
+
+</query><query name="trigger" focus="true" listorder="7" taborder="2" active="true" database="4911042569944379143" server="18178957751300353567" database-name="thuvien" server-name="App-Services" mode="xquery" optimize="1">/*
+xquery version "1.0-ml";
+import module namespace trgr="http://marklogic.com/xdmp/triggers" at "/MarkLogic/triggers.xqy";
+
+trgr:create-trigger(
+  xdmp:database("book"),
+  "InsertTrigger",
+  trgr:trigger-data-event(
+    trgr:directory-scope("/modules/"), 
+    trgr:document-content("create"),
+    trgr:post-commit()
+  ),
+  xdmp:function(xs:QName("modules", "check_bookId"))
+)
+*/
+
+/*
+xquery version "1.0-ml";
+
+declare function local:validate-bookId($doc as document-node()) as empty-sequence() {
+  let $book_Id := xs:integer($doc//book_Id)
+
+  return
+    if ($book_Id &lt; 0) then ()
+    else xdmp:fail("Book_id should be a non-negative value.")
+};
+*/
+
+/*
+xquery version "1.0-ml";
+import module namespace trgr="http://marklogic.com/xdmp/triggers" at "/MarkLogic/triggers.xqy";
+
+trgr:create-trigger(
+  xdmp:database("book"),
+  "DeleteTrigger",
+  trgr:trigger-data-event(
+    trgr:document-content("delete"),
+    trgr:pre-commit()
+  ),
+  xdmp:function(xs:QName("modules", "handleDocumentDeletion"))
+)
+*/
+
+
+/*
+xquery version "1.0-ml";
+
+declare function modules:handleDocumentDeletion(
+  $uri as xs:string
+) as empty-sequence() {
+  xdmp:log("Document deleted: " || $uri)
+};
+*/
+
+</query></workspace></export>
